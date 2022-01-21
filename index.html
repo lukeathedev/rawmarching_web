@@ -12,7 +12,7 @@
       type="image/png"
     />
 
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./index.css" />
 
     <link
       rel="stylesheet"
@@ -24,19 +24,19 @@
     <!-- TODO: separate JS, CSS, HTML -->
     <!-- TODO: add summary? index? that thingy with links -->
     <!-- TODO: add dark mode? -->
-    <div class="content">
+    <div class="content" id="#top">
       <div class="title">
         <div class="title-combo">
           <h1>Rawmarching Live Demo</h1>
           <h2>by lucas a.</h2>
         </div>
         <!-- TODO: image is a bit scuffed around the edges -->
-        <!-- <img
+        <img
           id="render"
           src="./assets/render.png"
           alt="Rendered sample"
           srcset=""
-        /> -->
+        />
       </div>
 
       <h2 style="margin-top: 15px">What's this?</h2>
@@ -46,7 +46,7 @@
         actual computer! (well, it <i>emulates</i> one at least). Since the
         emulator is web-based, execution is very slow. Expect to wait a couple
         of minutes to get the full image. You can read
-        <a href="#Writeup">the rest of the page</a> and then come back here to
+        <a href="#writeup">the rest of the page</a> and then come back here to
         check on the progress. If you're extra impatient, there are instructions
         on compiling everything yourself and running the code locally (which
         often results in faster execution) at the
@@ -62,7 +62,7 @@
         <canvas id="screen" style="display: none"></canvas>
       </div>
 
-      <h2 id="Writeup">How does it work?</h2>
+      <h2 id="writeup">How does it work?</h2>
 
       <h3>0. &nbsp; Some Background Information</h3>
       <p>
@@ -275,10 +275,118 @@
       <h3>Thanks for reading! :)</h3>
       <p>I hope you've enjoyed this small dive into the nitty gritty!</p>
 
-      <h3 id="Thanks">And thanks to all of the following for amazing resources:</h3>
-      <p>
-        TODO: create li styling and do attributions (ALL SOURCES) <br />
-      </p>
+      <h3 id="thanks">
+        And thanks to all of the following for amazing resources:
+      </h3>
+      <ul style="margin-top: 0">
+        <li>
+          <a target="_blank" href="https://wiki.osdev.org/Expanded_Main_Page"
+            >OSDev Wiki</a
+          >
+          - for just about anything you might need regarding OS development.
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf"
+            >os-dev.pdf by Nick Blundell</a
+          >
+          - a great introduction to low-level development for dummies.
+        </li>
+        <li>
+          <a target="_blank" href="https://www.youtube.com/watch?v=PGtv-dBi2wE"
+            >Ray Marching for Dummies!</a
+          >
+          - an approachable introductory video to raymarching by Martijn
+          Steinrucken.
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://en.wikipedia.org/wiki/BIOS_interrupt_call#Interrupt_table"
+            >Wikipedia articles on interrupts</a
+          >
+          - a great reference for using BIOS routines in real mode.
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://slaystudy.com/c-program-to-find-the-square-root-of-a-number/"
+            >C sqrt() snippet</a
+          >
+          - a simple binary search implementation of the square root.
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://wiki.osdev.org/A20_Line#Testing_the_A20_line"
+            >A20 Line test code</a
+          >
+          - public domain assembly code for checking the A20 Line status in real
+          mode.
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://wiki.osdev.org/Inline_Assembly/Examples#I.2FO_access"
+            >Inline Assembly/Examples</a
+          >
+          - for common C inline assembly functions used for I/O access.
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/"
+            >OpenGL Reference Pages</a
+          >
+          - for insight into vector math functions.
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://www.cprogramming.com/tutorial/tut2.html"
+            >Setting teh (sic) Color Palette</a
+          >
+          - information about the VGA color palette.
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://www.khanacademy.org/computing/computer-programming/programming-natural-simulations/programming-vectors/a/vector-magnitude-normalization"
+          >
+            Vector magnitude & normalization
+          </a>
+          - concise explanations of what it means to normalize a vector.
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://www.gnu.org/software/make/manual/make.html"
+            >GNU make manual</a
+          >
+          - manual for using GNU Make for executable generation from source
+          code.
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_mono/ld.html"
+          >
+            Using LD, the GNU linker
+          </a>
+          - resource that explains common options for linking executables with
+          <i>ld</i>.
+        </li>
+        <li>
+          <a target="_blank" href="https://wiki.osdev.org/GCC_Cross-Compiler"
+            >GCC Cross-Compiler</a
+          >
+          - information about building a cross-compiler for OS development.
+        </li>
+      </ul>
+      <a href="#top" style="text-align: center; margin-top: 20px"
+        >Back to top</a
+      >
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/v86@1.0.5/build/libv86.js"></script>
