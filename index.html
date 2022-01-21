@@ -12,6 +12,8 @@
       type="image/png"
     />
 
+    <link rel="stylesheet" href="./index.css">
+
     <link
       rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css"
@@ -29,12 +31,12 @@
           <h2>by lucas a.</h2>
         </div>
         <!-- TODO: image is a bit scuffed around the edges -->
-        <img
+        <!-- <img
           id="render"
           src="./assets/render.png"
           alt="Rendered sample"
           srcset=""
-        />
+        /> -->
       </div>
 
       <h2 style="margin-top: 15px">What's this?</h2>
@@ -65,14 +67,14 @@
       <h3>0. &nbsp; Some Background Information</h3>
       <p>
         What makes this raymarching example differ from others is the fact that
-        it runs as a standalone, self-contained system (and, (un)fortunately, runs
-        on the CPU). Know <i>Windows 10</i>? <i>MacOS</i>? <i>GNU/Linux</i>? We're not using
-        any of that here. Every function that's ever called was explicitly
-        defined at some point - no such thing as a standard library. Even the
-        square root function had to be re-implemented (I used a binary search
-        algorithm). In order to better understand what's needed to go from
-        nothingness to pixels on a screen, first we must look at how a typical
-        desktop computer processor is setup.
+        it runs as a standalone, self-contained system (and, (un)fortunately,
+        runs on the CPU). Know <i>Windows 10</i>? <i>MacOS</i>?
+        <i>GNU/Linux</i>? We're not using any of that here. Every function
+        that's ever called was explicitly defined at some point - no such thing
+        as a standard library. Even the square root function had to be
+        re-implemented (I used a binary search algorithm). In order to better
+        understand what's needed to go from nothingness to pixels on a screen,
+        first we must look at how a typical desktop computer processor is setup.
       </p>
 
       <div class="cluster">
@@ -197,9 +199,76 @@
         <h3>3. &nbsp; Graphics Programming</h3>
 
         <p>
-          <b>2.3 &nbsp;</b>
-          TODO: talk about the graphics programming duh
+          <b>3.1 &nbsp;</b>
+          Talking to the VGA-compatible card is thankfully a bit more
+          straightforward - if you're not planning on switching video modes,
+          that is. Firstly a color palette is set by writing to specific
+          <a
+            target="_blank"
+            href="https://en.wikipedia.org/wiki/Programmed_input%E2%80%93output"
+            >ports</a
+          >
+          on the computer (I chose grayscale for simplicity). I didn't mention
+          it, but we'll be using 320x200 256 color video - a far cry from full
+          HD or even 4K, but more than good enough for a simple demonstration.
+          Then, we can begin setting pixels by writing to memory addresses that
+          the adapter is using. In this video mode, the pixel buffer starts at
+          location
+          <a
+            target="_blank"
+            href="https://web.stanford.edu/class/cs140/projects/pintos/specs/freevga/vga/vgamem.htm"
+            >0xA0000</a
+          >, so all that's left to be done is to calculate the pixel values with
+          some algorithm and write them there. The algorithm, in case it wasn't
+          totally apparent, is raymarching.
         </p>
+
+        <div class="cluster">
+          <div class="cluster-content">
+            <p>
+              <b>3.2 &nbsp;</b>
+              Fully explaining raymarching would take a document of its own, so
+              I'll just briefly mention what it does, given that the main goal
+              of the project was to illustrate how to interface with the
+              hardware at the low level. In sum, raymarching is about casting
+              <a
+                target="_blank"
+                href="https://en.wikipedia.org/wiki/Volume_ray_casting"
+                >view rays</a
+              >
+              from a point in 3D space and checking for intersections with
+              predefined geometry. In raymarching, the geometry is not
+              determined by discrete points, but rather by
+              <a
+                target="_blank"
+                href="https://en.wikipedia.org/wiki/Signed_distance_function"
+                >signed distance functions</a
+              >. This means that spheres are mathematically perfect and many
+              operations can easily be performed on the objects. With proper
+              distance functions, simple lighting can be calculated by
+              determining the angle between the surface of the object and a
+              punctiform light source.
+            </p>
+            <div id="img-section">
+              <p style="margin-bottom: 0; margin-right: 0">
+                <b>3.3 &nbsp;</b>
+                Now that rays are cast for each pixel in the direction of the
+                scene and the lighting is then calculated, the intensity of the
+                light value can be directly poked into the VGA memory location
+                previously discussed. Let it run for a while and we get this:
+                <br />
+              </p>
+              <div id="render-3-3-container">
+                <img
+                  id="render-3-3"
+                  src="./assets/render.png"
+                  alt=""
+                  srcset=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <h2>A sincere thank you</h2>
@@ -212,135 +281,6 @@
         REMEMBER TO HREF CORRECLY ON GITHUB TO THIS SECTION
       </p>
     </div>
-
-    <style>
-      /* Bebas Neue, Robot, Syne Mono, Playfair Display */
-      @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;1,100&family=Syne+Mono&display=swap");
-
-      /* TODO: add media query for mobile devices */
-
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-
-        scroll-behavior: smooth;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .title {
-        display: flex;
-      }
-
-      a {
-        color: #259dbb;
-        text-decoration: none;
-      }
-
-      a:visited {
-        color: #005e7a;
-      }
-
-      #render {
-        margin-top: -50px;
-        margin-left: 50px;
-        max-height: 200px;
-        border-radius: 10px;
-
-        transform: rotate(-10deg);
-
-        /* not so sure about this */
-        border: 2px dashed black;
-      }
-
-      h1 {
-        font-size: 2.5em;
-        font-family: "Bebas Neue";
-      }
-
-      .title-combo h2 {
-        margin-top: 0;
-        font-size: 1.25em;
-        text-align: right;
-      }
-
-      .title-combo h1 {
-        margin-bottom: 0;
-      }
-
-      h2 {
-        font-family: "Syne Mono";
-
-        margin-top: 40px;
-        margin-bottom: 20px;
-      }
-
-      h3 {
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 10px;
-      }
-
-      .content {
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 1000px;
-        display: flex;
-        flex-direction: column;
-        padding: 15px;
-      }
-
-      .content p {
-        margin-top: 0;
-        margin-left: 20px;
-        margin-right: 20px;
-        margin-bottom: 30px;
-
-        text-align: justify;
-      }
-
-      .cluster {
-        align-self: center;
-      }
-
-      .cluster-content {
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      .cluster-content p {
-        max-width: none;
-        min-width: 200px;
-
-        /* this is starting to get messy */
-        flex: 0 calc(50% - 40px);
-      }
-
-      p b {
-        font-size: 1.25em;
-        font-family: "Bebas Neue";
-      }
-
-      /* TODO: maintain screen size */
-      #screen_container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 400px;
-
-        border: 2px dashed black;
-
-        border-radius: 10px;
-      }
-    </style>
 
     <script src="https://cdn.jsdelivr.net/npm/v86@1.0.5/build/libv86.js"></script>
 
