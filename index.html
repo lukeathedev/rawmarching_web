@@ -64,7 +64,7 @@
 
       <h2 id="writeup">How does it work?</h2>
 
-      <h3>0. &nbsp; Some Background Information</h3>
+      <h3>1. &nbsp; Some Background Information</h3>
       <p>
         What makes this raymarching example differ from others is the fact that
         it runs as a standalone, self-contained system (and, (un)fortunately,
@@ -78,10 +78,10 @@
       </p>
 
       <div class="cluster">
-        <h3>1. &nbsp; Real Mode</h3>
+        <h3>2. &nbsp; Real Mode</h3>
         <div class="cluster-content">
           <p>
-            <b>1.1 &nbsp;</b>
+            <b>2.1 &nbsp;</b>
             The computer boots up in what is known as
             <a target="_blank" href="https://wiki.osdev.org/Real_Mode"
               >real mode</a
@@ -96,7 +96,7 @@
             <a href="https://en.wikipedia.org/wiki/X86">x86 architecture</a>.
           </p>
           <p>
-            <b>1.2 &nbsp;</b>
+            <b>2.2 &nbsp;</b>
             Awkwardly enumerated as '2', the first step is to create a
             bootloader that, through the use of
             <a
@@ -117,7 +117,7 @@
             deals with disks.
           </p>
           <p>
-            <b>1.3 &nbsp;</b>
+            <b>2.3 &nbsp;</b>
             <i>stage2.s</i> is then responsible for some rather weird things.
             For compatibility reasons, the 21st memory address bit is disabled
             by default, meaning that you can only access 1MB of memory, instead
@@ -131,7 +131,7 @@
             program) to a sensible memory location.
           </p>
           <p>
-            <b>1.4 &nbsp;</b>
+            <b>2.4 &nbsp;</b>
             Lastly, the
             <a
               target="_blank"
@@ -152,10 +152,10 @@
         </div>
       </div>
       <div class="cluster">
-        <h3>2. &nbsp; Protected Mode</h3>
+        <h3>3. &nbsp; Protected Mode</h3>
         <div class="cluster-content">
           <p>
-            <b>2.1 &nbsp;</b>
+            <b>3.1 &nbsp;</b>
             All of the hassle of the previous section did come with some fairly
             significant benefits, however. Not only is the kernel code now able
             to fully utilise the processor, but we're also able to write code in
@@ -175,7 +175,7 @@
             (hinted at by the <i>.s</i> file extensions).
           </p>
           <p>
-            <b>2.2 &nbsp;</b>
+            <b>3.2 &nbsp;</b>
             Compiling C code is a bit trickier than it seems, though. Most
             compilers are used to the cozyness of a fully-fledged operating
             system, where there is access to standard libraries and many other
@@ -196,10 +196,10 @@
           </p>
         </div>
 
-        <h3>3. &nbsp; Graphics Programming</h3>
+        <h3>4. &nbsp; Graphics Programming</h3>
 
         <p>
-          <b>3.1 &nbsp;</b>
+          <b>4.1 &nbsp;</b>
           Talking to the VGA-compatible card is thankfully a bit more
           straightforward - if you're not planning on switching video modes,
           that is. Firstly a color palette is set by writing to specific
@@ -226,7 +226,7 @@
         <div class="cluster">
           <div class="cluster-content">
             <p>
-              <b>3.2 &nbsp;</b>
+              <b>4.2 &nbsp;</b>
               Fully explaining raymarching would take a document of its own, so
               I'll just briefly mention what it does, given that the main goal
               of the project was to illustrate how to interface with the
@@ -251,7 +251,7 @@
             </p>
             <div id="img-section">
               <p style="margin-bottom: 0; margin-right: 0">
-                <b>3.3 &nbsp;</b>
+                <b>4.3 &nbsp;</b>
                 Now that rays are cast for each pixel in the direction of the
                 scene and the lighting is then calculated, the intensity of the
                 light value can be directly poked into the VGA memory location
